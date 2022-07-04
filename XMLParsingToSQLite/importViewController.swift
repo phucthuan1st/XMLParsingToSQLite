@@ -7,13 +7,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class importViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
 
 
 }
+
+class fileCell : UITableViewCell {
+    @IBOutlet weak var fileSize: UILabel!
+    @IBOutlet weak var fileName: UILabel!
+}
+
+
 
