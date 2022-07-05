@@ -105,9 +105,49 @@
             </objects>
             <point key="canvasLocation" x="-381.15942028985512" y="-638.16964285714278"/>
         </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="eAr-q1-8CL">
+            <objects>
+                <viewController storyboardIdentifier="loadingViewController" id="F29-0A-tO1" customClass="loadingViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="23h-gO-kjv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7y6-Gn-2y1">
+                                <rect key="frame" x="30" y="544" width="354" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NaQ-bp-sYw">
+                                <rect key="frame" x="60" y="500" width="294" height="4"/>
+                            </progressView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="N9q-VW-OsD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N9q-VW-OsD" firstAttribute="trailing" secondItem="7y6-Gn-2y1" secondAttribute="trailing" constant="30" id="QfX-YF-1No"/>
+                            <constraint firstItem="NaQ-bp-sYw" firstAttribute="top" secondItem="N9q-VW-OsD" secondAttribute="top" constant="456" id="gY4-7d-pVV"/>
+                            <constraint firstItem="N9q-VW-OsD" firstAttribute="trailing" secondItem="NaQ-bp-sYw" secondAttribute="trailing" constant="60" id="gzi-Kd-Mv9"/>
+                            <constraint firstItem="7y6-Gn-2y1" firstAttribute="top" secondItem="NaQ-bp-sYw" secondAttribute="bottom" constant="40" id="mJj-xt-2TF"/>
+                            <constraint firstItem="N9q-VW-OsD" firstAttribute="bottom" secondItem="7y6-Gn-2y1" secondAttribute="bottom" constant="294" id="mdq-Bk-lwc"/>
+                            <constraint firstItem="NaQ-bp-sYw" firstAttribute="leading" secondItem="N9q-VW-OsD" secondAttribute="leading" constant="60" id="w18-lO-XWg"/>
+                            <constraint firstItem="7y6-Gn-2y1" firstAttribute="leading" secondItem="N9q-VW-OsD" secondAttribute="leading" constant="30" id="xuC-yF-dbt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressingBar" destination="NaQ-bp-sYw" id="fdF-A6-dDZ"/>
+                        <outlet property="progressingFile" destination="7y6-Gn-2y1" id="SkX-jq-JTv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fxI-HJ-6Nq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="-638"/>
+        </scene>
         <!--Xml View Controller-->
         <scene sceneID="uyc-Vh-bRM">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="77c-O7-lm7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="xmlViewController" id="rUG-mu-Czd" customClass="xmlViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vmp-mq-osr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -116,9 +156,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="77c-O7-lm7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="462" y="-625"/>
+            <point key="canvasLocation" x="1213" y="-638"/>
         </scene>
     </scenes>
     <resources>

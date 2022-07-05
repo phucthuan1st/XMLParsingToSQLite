@@ -13,7 +13,11 @@ class importViewController: UIViewController {
     
     let fileManager = FileManager.default
     var fileList = [String]()
-    var selectedList = [String]()
+    var selectedList = [String]() {
+        didSet {
+            selectedList.sort()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +27,16 @@ class importViewController: UIViewController {
     }
 
     @IBAction func didTapImport(_ sender: Any) {
-        print("import \(selectedList)")
+        if selectedList.isEmpty {
+            cancelAlert(message: "Empty selection")
+        }
+        else {
+            let loadingView = self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! loadingViewController
+            
+            loadingView.fileList = selectedList
+            
+            self.navigationController?.pushViewController(loadingView, animated: true)
+        }
     }
 }
 
@@ -78,8 +91,7 @@ extension importViewController {
             let docsDir = dirPath[0].path
 
             if !fileManager.changeCurrentDirectoryPath(docsDir) {
-                let alert = UIAlertController(title: "Warning", message: "Documents folder not exist", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                cancelAlert(message: "Documents folder not exist")
             }
             
             let dataDir = dirPath[0].appendingPathComponent("data").path
@@ -91,9 +103,7 @@ extension importViewController {
             return dataDir
         }
         catch {
-            let alert = UIAlertController(title: "Warning", message: "Error when try to load data or missing directory", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            
+            cancelAlert(message: "Error when try to load data or missing directory")
             return ""
         }
     }
@@ -107,15 +117,29 @@ extension importViewController {
                 let dataQueue = DispatchQueue(label: "public.load.fileList")
                 try dataQueue.sync {
                     fileList = try fileManager.contentsOfDirectory(atPath: dataDir)
+                    fileTable.reloadData()
                 }
                 
-                fileList = fileList.filter {$0.contains(".xml")}
+                fileList = fileList.filter {$0.contains(".xml")}.sorted()
+                
+                print(fileList)
+                
+                if fileList.isEmpty {
+                    cancelAlert(message: "Data folder is empty")
+                }
             }
             catch {
-                let alert = UIAlertController(title: "Warning", message: "Error when try to load data", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                cancelAlert(message: "Error when try to load data")
             }
         }
+    }
+}
+
+extension importViewController {
+    func cancelAlert(message:String) {
+        let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true)
     }
 }
 
