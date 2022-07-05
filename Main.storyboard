@@ -38,44 +38,34 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="fileCell" id="wJ2-DY-5fo" customClass="FileCell" customModule="XMLParsingToSQLite" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="44.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wJ2-DY-5fo" id="2is-cL-PWj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GTb-Fs-5TE">
+                                                    <rect key="frame" x="21.5" y="14" width="18.5" height="16.5"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fileName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjm-Rf-Cua">
-                                                    <rect key="frame" x="53" y="0.0" width="78" height="25"/>
+                                                    <rect key="frame" x="53" y="10" width="341" height="24.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fileSize" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scH-YT-HSV">
-                                                    <rect key="frame" x="53" y="22" width="50" height="18.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GTb-Fs-5TE" customClass="CheckImage" customModule="XMLParsingToSQLite" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="14" width="20" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="scH-YT-HSV" firstAttribute="leading" secondItem="2is-cL-PWj" secondAttribute="leading" constant="53" id="436-J2-mxq"/>
-                                                <constraint firstAttribute="bottom" secondItem="scH-YT-HSV" secondAttribute="bottom" constant="4" id="Crn-ct-oEb"/>
-                                                <constraint firstAttribute="trailing" secondItem="Pjm-Rf-Cua" secondAttribute="trailing" constant="283" id="STX-Vj-wMO"/>
-                                                <constraint firstAttribute="bottom" secondItem="Pjm-Rf-Cua" secondAttribute="bottom" constant="19.5" id="pQQ-7x-r2b"/>
-                                                <constraint firstAttribute="trailing" secondItem="scH-YT-HSV" secondAttribute="trailing" constant="311" id="soy-Cv-Ced"/>
-                                                <constraint firstItem="Pjm-Rf-Cua" firstAttribute="leading" secondItem="2is-cL-PWj" secondAttribute="leading" constant="53" id="uch-NP-dGl"/>
-                                                <constraint firstItem="Pjm-Rf-Cua" firstAttribute="top" secondItem="2is-cL-PWj" secondAttribute="top" id="zKu-hR-wPA"/>
-                                                <constraint firstItem="scH-YT-HSV" firstAttribute="top" secondItem="2is-cL-PWj" secondAttribute="top" constant="22" id="zTn-ea-97f"/>
+                                                <constraint firstAttribute="bottom" secondItem="Pjm-Rf-Cua" secondAttribute="bottom" constant="9.75" id="BI5-jD-RJg"/>
+                                                <constraint firstItem="Pjm-Rf-Cua" firstAttribute="leading" secondItem="2is-cL-PWj" secondAttribute="leading" constant="53" id="Bmm-Ar-BoK"/>
+                                                <constraint firstItem="GTb-Fs-5TE" firstAttribute="centerY" secondItem="2is-cL-PWj" secondAttribute="centerY" id="ZtO-eV-V9G"/>
+                                                <constraint firstItem="Pjm-Rf-Cua" firstAttribute="leading" secondItem="GTb-Fs-5TE" secondAttribute="trailing" constant="13" id="qcD-tM-BfG"/>
+                                                <constraint firstItem="Pjm-Rf-Cua" firstAttribute="top" secondItem="2is-cL-PWj" secondAttribute="top" constant="9.75" id="sO3-r1-EwQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="Pjm-Rf-Cua" secondAttribute="trailing" constant="20" id="zQf-iO-1gm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="check" destination="GTb-Fs-5TE" id="uzf-CQ-fUs"/>
                                             <outlet property="fileName" destination="Pjm-Rf-Cua" id="T79-uG-KKg"/>
-                                            <outlet property="fileSize" destination="scH-YT-HSV" id="onN-uy-Nla"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -95,7 +85,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Choose file(s) to import" id="J94-0f-kJI">
-                        <barButtonItem key="backBarButtonItem" title="Exit" id="DIf-gO-3A0"/>
+                        <barButtonItem key="rightBarButtonItem" title="ImportNavigation" style="plain" id="T8B-jl-Xif">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="UiY-aQ-t7q">
+                                <rect key="frame" x="258.5" y="5" width="135.5" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Import"/>
+                                <connections>
+                                    <action selector="didTapImport:" destination="TSo-UZ-4kl" eventType="touchUpInside" id="bcH-cE-Cnl"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="fileTable" destination="rGA-bB-Kqg" id="hM1-6m-4Gy"/>
