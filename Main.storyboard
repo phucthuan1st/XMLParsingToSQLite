@@ -28,30 +28,101 @@
         <!--Choose file(s) to import-->
         <scene sceneID="RQO-lr-Dws">
             <objects>
-                <viewController id="TSo-UZ-4kl" customClass="importViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="importViewController" id="TSo-UZ-4kl" customClass="importViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eIk-Av-kRX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rGA-bB-Kqg">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="fileCell" id="wJ2-DY-5fo" customClass="FileCell" customModule="XMLParsingToSQLite" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="44.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wJ2-DY-5fo" id="2is-cL-PWj">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fileName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjm-Rf-Cua">
+                                                    <rect key="frame" x="53" y="0.0" width="78" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fileSize" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scH-YT-HSV">
+                                                    <rect key="frame" x="53" y="22" width="50" height="18.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GTb-Fs-5TE" customClass="CheckImage" customModule="XMLParsingToSQLite" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="14" width="20" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="scH-YT-HSV" firstAttribute="leading" secondItem="2is-cL-PWj" secondAttribute="leading" constant="53" id="436-J2-mxq"/>
+                                                <constraint firstAttribute="bottom" secondItem="scH-YT-HSV" secondAttribute="bottom" constant="4" id="Crn-ct-oEb"/>
+                                                <constraint firstAttribute="trailing" secondItem="Pjm-Rf-Cua" secondAttribute="trailing" constant="283" id="STX-Vj-wMO"/>
+                                                <constraint firstAttribute="bottom" secondItem="Pjm-Rf-Cua" secondAttribute="bottom" constant="19.5" id="pQQ-7x-r2b"/>
+                                                <constraint firstAttribute="trailing" secondItem="scH-YT-HSV" secondAttribute="trailing" constant="311" id="soy-Cv-Ced"/>
+                                                <constraint firstItem="Pjm-Rf-Cua" firstAttribute="leading" secondItem="2is-cL-PWj" secondAttribute="leading" constant="53" id="uch-NP-dGl"/>
+                                                <constraint firstItem="Pjm-Rf-Cua" firstAttribute="top" secondItem="2is-cL-PWj" secondAttribute="top" id="zKu-hR-wPA"/>
+                                                <constraint firstItem="scH-YT-HSV" firstAttribute="top" secondItem="2is-cL-PWj" secondAttribute="top" constant="22" id="zTn-ea-97f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="check" destination="GTb-Fs-5TE" id="uzf-CQ-fUs"/>
+                                            <outlet property="fileName" destination="Pjm-Rf-Cua" id="T79-uG-KKg"/>
+                                            <outlet property="fileSize" destination="scH-YT-HSV" id="onN-uy-Nla"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="LQ2-k5-4xP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rGA-bB-Kqg" firstAttribute="height" secondItem="LQ2-k5-4xP" secondAttribute="height" id="3bJ-CQ-Z3H"/>
+                            <constraint firstItem="rGA-bB-Kqg" firstAttribute="leading" secondItem="LQ2-k5-4xP" secondAttribute="leading" id="KKj-SA-4sl"/>
+                            <constraint firstItem="rGA-bB-Kqg" firstAttribute="top" secondItem="LQ2-k5-4xP" secondAttribute="top" id="Vty-bv-IB6"/>
+                            <constraint firstItem="LQ2-k5-4xP" firstAttribute="bottom" secondItem="rGA-bB-Kqg" secondAttribute="bottom" id="eUN-NB-gdD"/>
+                            <constraint firstItem="LQ2-k5-4xP" firstAttribute="trailing" secondItem="rGA-bB-Kqg" secondAttribute="trailing" id="ilr-WB-NJI"/>
+                            <constraint firstItem="rGA-bB-Kqg" firstAttribute="centerY" secondItem="LQ2-k5-4xP" secondAttribute="centerY" id="kQz-Xt-Lcj"/>
+                            <constraint firstItem="rGA-bB-Kqg" firstAttribute="centerX" secondItem="LQ2-k5-4xP" secondAttribute="centerX" id="wdV-DF-5QW"/>
+                            <constraint firstItem="rGA-bB-Kqg" firstAttribute="width" secondItem="LQ2-k5-4xP" secondAttribute="width" id="zsT-Dc-rVM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Choose file(s) to import" id="J94-0f-kJI">
-                        <barButtonItem key="rightBarButtonItem" title="Import" style="plain" id="6XT-cP-c4U">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Xyt-TT-DRM">
-                                <rect key="frame" x="-33" y="-15" width="92" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
-                        </barButtonItem>
+                        <barButtonItem key="backBarButtonItem" title="Exit" id="DIf-gO-3A0"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="fileTable" destination="rGA-bB-Kqg" id="hM1-6m-4Gy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISN-DB-qmg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-380" y="-638"/>
+            <point key="canvasLocation" x="-381.15942028985512" y="-638.16964285714278"/>
+        </scene>
+        <!--Xml View Controller-->
+        <scene sceneID="uyc-Vh-bRM">
+            <objects>
+                <viewController storyboardIdentifier="xmlViewController" id="rUG-mu-Czd" customClass="xmlViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vmp-mq-osr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5wZ-Sz-ZEQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="77c-O7-lm7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="462" y="-625"/>
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

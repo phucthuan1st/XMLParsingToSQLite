@@ -16,6 +16,8 @@
 		514F06A02872EFE0008907DB /* XMLParsingToSQLiteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514F069F2872EFE0008907DB /* XMLParsingToSQLiteUITestsLaunchTests.swift */; };
 		514F06AD2872F8BC008907DB /* importViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514F06AC2872F8BC008907DB /* importViewController.swift */; };
 		514F06AF2872FA07008907DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514F06AE2872FA07008907DB /* Main.storyboard */; };
+		51A7E1112873C60600F4AD50 /* xmlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7E1102873C60600F4AD50 /* xmlViewController.swift */; };
+		51A7E1132873C8E400F4AD50 /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7E1122873C8E400F4AD50 /* database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		514F069F2872EFE0008907DB /* XMLParsingToSQLiteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParsingToSQLiteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		514F06AC2872F8BC008907DB /* importViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = importViewController.swift; sourceTree = "<group>"; };
 		514F06AE2872FA07008907DB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		51A7E1102873C60600F4AD50 /* xmlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xmlViewController.swift; sourceTree = "<group>"; };
+		51A7E1122873C8E400F4AD50 /* database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				514F06AC2872F8BC008907DB /* importViewController.swift */,
+				51A7E1122873C8E400F4AD50 /* database.swift */,
+				51A7E1102873C60600F4AD50 /* xmlViewController.swift */,
 				514F067C2872EFDE008907DB /* AppDelegate.swift */,
 				514F067E2872EFDE008907DB /* SceneDelegate.swift */,
 				514F06852872EFE0008907DB /* Assets.xcassets */,
@@ -260,6 +266,8 @@
 			files = (
 				514F067D2872EFDE008907DB /* AppDelegate.swift in Sources */,
 				514F067F2872EFDE008907DB /* SceneDelegate.swift in Sources */,
+				51A7E1112873C60600F4AD50 /* xmlViewController.swift in Sources */,
+				51A7E1132873C8E400F4AD50 /* database.swift in Sources */,
 				514F06AD2872F8BC008907DB /* importViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
