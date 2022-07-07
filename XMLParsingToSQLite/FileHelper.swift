@@ -22,8 +22,8 @@ class FileHelper {
         var fileList = [String]()
         
         if dataDir != "" {
-                fileList = try fileManager.contentsOfDirectory(atPath: dataDir)
-                fileList = fileList.filter {$0.contains(".xml")}
+            fileList = try fileManager.contentsOfDirectory(atPath: dataDir)
+            fileList = fileList.filter {$0.contains(".xml")}
         }
         
         return fileList
@@ -31,16 +31,19 @@ class FileHelper {
     
     func copyItem(from:String, to:String) throws {
         
-        if !existDirectory(Path: to) {
-            try createDirectory(Path: to)
-        }
+        let docDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
         
-        fileManager.changeCurrentDirectoryPath(to)
-        if fileManager.fileExists(atPath: from) {
-            try fileManager.copyItem(atPath: from, toPath: to)
+        let docPath = docDir[0]
+        
+        let fromPath = docPath.appendingPathComponent(from).path
+        let toPath = docPath.appendingPathComponent(to).path
+        
+        if !fileManager.fileExists(atPath: toPath) {
+            try fileManager.copyItem(atPath: fromPath, toPath: toPath)
         }
         else {
-            print("file \(from) not exist")
+            try fileManager.removeItem(atPath: toPath)
+            try fileManager.copyItem(atPath: fromPath, toPath: toPath)
         }
     }
     
