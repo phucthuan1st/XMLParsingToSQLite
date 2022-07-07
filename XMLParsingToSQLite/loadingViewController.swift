@@ -7,6 +7,11 @@
 
 import UIKit
 
+struct XMLInfo {
+    var instanceID:String?
+    var instanceName:String?
+}
+
 class loadingViewController: UIViewController {
     
     @IBOutlet weak var progressingBar: UIProgressView!
@@ -16,11 +21,8 @@ class loadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dispatchGroup = DispatchGroup()
-        
-        dispatchGroup.enter()
+        progressingBar.setProgress(0.0, animated: true)
         moveFileToOfficial()
-        dispatchGroup.leave()
     }
 }
 
@@ -28,32 +30,40 @@ extension loadingViewController {
     
     //MARK: move to FileHelper later
     func moveFileToOfficial() {
-        do {
-            
-            let fh = FileHelper()
-            
-            if !fh.existDirectory(Path: fh.pathToDir("official-data")) {
-                try fh.createDirectory(Path: fh.pathToDir("official-data"))
-            }
-            
-            progressingBar.setProgress(0.0, animated: true)
+        DispatchQueue.global().async {
 
-            var complete:Float = 0.0
+            do {
+                let fh = FileHelper.shared
                 
-            for file in self.fileList {
-                try fh.copyItem(from: "data/" + file, to: "official-data/" + file)
-                complete += 1.0 / Float(self.fileList.count)
-                
-                DispatchQueue.main.async { [weak self] in
-                    print("File: \(file) imported")
-                    self?.progressingBar.setProgress(complete, animated: true)
+                if !fh.existDirectory(Path: fh.pathToDir("official-data")) {
+                    try fh.createDirectory(Path: fh.pathToDir("official-data"))
                 }
+
+                var complete:Float = 0.0
+                    
+                for file in self.fileList {
+                    try fh.copyItem(from: "data/" + file, to: "official-data/" + file)
+                    complete += 1.0 / Float(self.fileList.count)
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        print("File: \(file) imported")
+                        self?.progressingBar.setProgress(complete, animated: true)
+                    }
+                }
+                
             }
-            
+            catch {
+                self.Alert(message: error.localizedDescription)
+            }
         }
-        catch {
-            Alert(message: error.localizedDescription)
-        }
+    }
+    
+    func storeXMLValue() {
+        
+    }
+    
+    func writeXMLInfoToDataBase() {
+        
     }
     //-----------------------------------------
     

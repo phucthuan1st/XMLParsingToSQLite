@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		514A04F1287691DC00F9EA50 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A04F0287691DC00F9EA50 /* FileHelper.swift */; };
-		514A04F3287691FF00F9EA50 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A04F2287691FF00F9EA50 /* DBHelper.swift */; };
+		514A05302876DF0D00F9EA50 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514A052F2876DF0D00F9EA50 /* DBManager.swift */; };
 		514F067D2872EFDE008907DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514F067C2872EFDE008907DB /* AppDelegate.swift */; };
 		514F067F2872EFDE008907DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514F067E2872EFDE008907DB /* SceneDelegate.swift */; };
 		514F06862872EFE0008907DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514F06852872EFE0008907DB /* Assets.xcassets */; };
@@ -18,6 +18,7 @@
 		51549343287438EE00D83770 /* loadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51549342287438EE00D83770 /* loadingViewController.swift */; };
 		5154934528743D8400D83770 /* xmlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154934428743D8400D83770 /* xmlViewController.swift */; };
 		51A7E1152873F65300F4AD50 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 51A7E1142873F65300F4AD50 /* data */; };
+		51D6BD982876E633000FF5D9 /* XMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6BD972876E633000FF5D9 /* XMLHelper.swift */; };
 		EE8A8EF31E394F588DFF1CE1 /* Pods_XMLParsingToSQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83AC9B5424BDBEB2A482D9F9 /* Pods_XMLParsingToSQLite.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +42,6 @@
 /* Begin PBXFileReference section */
 		184B5BAF7CD7C26827965E77 /* Pods-XMLParsingToSQLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMLParsingToSQLite.debug.xcconfig"; path = "Target Support Files/Pods-XMLParsingToSQLite/Pods-XMLParsingToSQLite.debug.xcconfig"; sourceTree = "<group>"; };
 		514A04F0287691DC00F9EA50 /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
-		514A04F2287691FF00F9EA50 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		514A04FE28769D3100F9EA50 /* XMLParsingToSQLite-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMLParsingToSQLite-Bridging-Header.h"; sourceTree = "<group>"; };
 		514A05242876A06F00F9EA50 /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		514A05252876A06F00F9EA50 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
@@ -54,6 +54,7 @@
 		514A052C2876A06F00F9EA50 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
 		514A052D2876A06F00F9EA50 /* FMDatabasePool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
 		514A052E2876A06F00F9EA50 /* FMResultSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		514A052F2876DF0D00F9EA50 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		514F06792872EFDE008907DB /* XMLParsingToSQLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMLParsingToSQLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		514F067C2872EFDE008907DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		514F067E2872EFDE008907DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		51549342287438EE00D83770 /* loadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadingViewController.swift; sourceTree = "<group>"; };
 		5154934428743D8400D83770 /* xmlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = xmlViewController.swift; path = ../../../.Trash/xmlViewController.swift; sourceTree = "<group>"; };
 		51A7E1142873F65300F4AD50 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
+		51D6BD972876E633000FF5D9 /* XMLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLHelper.swift; sourceTree = "<group>"; };
 		83AC9B5424BDBEB2A482D9F9 /* Pods_XMLParsingToSQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMLParsingToSQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2D748EFB347AD43427D1AD /* Pods-XMLParsingToSQLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMLParsingToSQLite.release.xcconfig"; path = "Target Support Files/Pods-XMLParsingToSQLite/Pods-XMLParsingToSQLite.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 			children = (
 				51A7E1142873F65300F4AD50 /* data */,
 				514F06AE2872FA07008907DB /* Main.storyboard */,
+				514F06872872EFE0008907DB /* LaunchScreen.storyboard */,
 				514F067B2872EFDE008907DB /* XMLParsingToSQLite */,
 				514F067A2872EFDE008907DB /* Products */,
 				B9FE9D9FD4816B1179DA9CD7 /* Pods */,
@@ -147,11 +150,11 @@
 				514F067C2872EFDE008907DB /* AppDelegate.swift */,
 				514F067E2872EFDE008907DB /* SceneDelegate.swift */,
 				514F06852872EFE0008907DB /* Assets.xcassets */,
-				514F06872872EFE0008907DB /* LaunchScreen.storyboard */,
 				514F068A2872EFE0008907DB /* Info.plist */,
 				514A04F0287691DC00F9EA50 /* FileHelper.swift */,
-				514A04F2287691FF00F9EA50 /* DBHelper.swift */,
+				514A052F2876DF0D00F9EA50 /* DBManager.swift */,
 				514A04FE28769D3100F9EA50 /* XMLParsingToSQLite-Bridging-Header.h */,
+				51D6BD972876E633000FF5D9 /* XMLHelper.swift */,
 			);
 			path = XMLParsingToSQLite;
 			sourceTree = "<group>";
@@ -354,10 +357,11 @@
 				514F067D2872EFDE008907DB /* AppDelegate.swift in Sources */,
 				514F067F2872EFDE008907DB /* SceneDelegate.swift in Sources */,
 				5154934528743D8400D83770 /* xmlViewController.swift in Sources */,
-				514A04F3287691FF00F9EA50 /* DBHelper.swift in Sources */,
+				51D6BD982876E633000FF5D9 /* XMLHelper.swift in Sources */,
 				514F06AD2872F8BC008907DB /* importViewController.swift in Sources */,
 				51549343287438EE00D83770 /* loadingViewController.swift in Sources */,
 				514A04F1287691DC00F9EA50 /* FileHelper.swift in Sources */,
+				514A05302876DF0D00F9EA50 /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

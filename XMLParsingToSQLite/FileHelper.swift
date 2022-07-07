@@ -1,13 +1,6 @@
-//
-//  FileHelper.swift
-//  XMLParsingToSQLite
-//
-//  Created by MacMini01 on 07/07/2022.
-//
-
-import Foundation
-
 class FileHelper {
+    static let shared: FileHelper = FileHelper()
+    
     let fileManager = FileManager.default
     
     func existDirectory(Path dir:String) -> Bool {
