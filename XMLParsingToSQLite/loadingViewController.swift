@@ -9,7 +9,6 @@ import UIKit
 
 class loadingViewController: UIViewController {
     
-    @IBOutlet weak var progressingFile: UILabel!
     @IBOutlet weak var progressingBar: UIProgressView!
     
     var fileList = [String]()
@@ -17,59 +16,49 @@ class loadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        moveFileToOfficial()
+        self.progressingBar.setProgress(0.0, animated: false)
+        
+        DispatchQueue.global().async {
+            self.moveFileToOfficial()
+        }
     }
 }
 
 extension loadingViewController {
+    
+    //MARK: move to FileHelper later
     func moveFileToOfficial() {
-        //let movingQueue = DispatchQueue(label: "public.moving.official")
-        let fileManager = FileManager.default
-        let dirPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        
-        let docsDir = dirPath[0].path
-        
+        let fh = FileHelper()
         do {
-            if !fileManager.changeCurrentDirectoryPath(docsDir) {
-                cancelAlert(message: "Documents folder not exist")
-            }
+            let dataDir = fh.pathToDir("data")
+            let officialDataDir = fh.pathToDir("official-data")
             
-            let officialDataDir = dirPath[0].appendingPathComponent("official-data").path
-            let dataDir = dirPath[0].appendingPathComponent("data").path
-            
-            
-            if !fileManager.changeCurrentDirectoryPath(officialDataDir) {
-                try fileManager.createDirectory(atPath: officialDataDir, withIntermediateDirectories: true, attributes: nil)
-            }
+            var complete:Float = 0.0
             
             for file in self.fileList {
-                let dir = dataDir + "/" + file
-                    
-                self.progressingBar.progress += 1 / Float(self.fileList.count)
-                    
-                self.progressingBar.setProgress(self.progressingBar.progress, animated: true)
+                print(file)
+                let fromFileDir = dataDir + "/" + file
+                let toFileDir = officialDataDir + "/" + file
+                
+                print(fromFileDir)
+                print(toFileDir)
+                try fh.copyItem(from: fromFileDir, to: toFileDir)
+                complete += 1.0 / Float(fileList.count)
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.progressingBar.setProgress(complete, animated: true)
+                }
             }
         }
         catch {
-            print(error)
-            cancelAlert(message: "Error when try to load data or missing directory")
+            print(error.localizedDescription)
         }
     }
-    
-    func copyItem(from:String, to:String) -> Float {
-        do {
-            try FileManager.default.copyItem(atPath: from, toPath: to)
-        }
-        catch {
-            print(error)
-        }
-        
-        return 1
-    }
+    //-----------------------------------------
     
     func cancelAlert(message:String) {
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
 }

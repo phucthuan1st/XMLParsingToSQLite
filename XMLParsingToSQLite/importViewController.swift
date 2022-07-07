@@ -21,9 +21,7 @@ class importViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         showDataFileOnStorage()
-        
     }
 
     @IBAction func didTapImport(_ sender: Any) {
@@ -36,10 +34,12 @@ class importViewController: UIViewController {
             loadingView.fileList = selectedList
             
             self.navigationController?.pushViewController(loadingView, animated: true)
+            
         }
     }
 }
 
+//MARK: table view configuration
 extension importViewController : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,7 +64,6 @@ extension importViewController : UITableViewDelegate, UITableViewDataSource {
         cell.check.isHidden = false
         
         selectedList.append(cell.fileName.text!)
-        print(selectedList)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -72,69 +71,25 @@ extension importViewController : UITableViewDelegate, UITableViewDataSource {
         
         cell.check.isHidden = true
         selectedList.removeAll(where: {$0 == cell.fileName.text})
-        print(selectedList)
     }
     
     func showDataFileOnStorage() {
-        getFileList(From: dataDir())
+        do {
+            let fh = FileHelper()
+            fileList = try fh.getFileList(On: fh.pathToDir("data"))
+            fileList.sort()
+        }
+        catch {
+            cancelAlert(message: error.localizedDescription)
+        }
+        
         fileTable.allowsMultipleSelection = true
         fileTable.dataSource = self
         fileTable.delegate = self
     }
 }
 
-extension importViewController {
-    func dataDir() -> String {
-        let dirPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        
-        do {
-            let docsDir = dirPath[0].path
-
-            if !fileManager.changeCurrentDirectoryPath(docsDir) {
-                cancelAlert(message: "Documents folder not exist")
-            }
-            
-            let dataDir = dirPath[0].appendingPathComponent("data").path
-            
-            if !fileManager.changeCurrentDirectoryPath(dataDir) {
-                try fileManager.createDirectory(atPath: dataDir, withIntermediateDirectories: true, attributes: nil)
-            }
-            
-            return dataDir
-        }
-        catch {
-            cancelAlert(message: "Error when try to load data or missing directory")
-            return ""
-        }
-    }
-    
-    func getFileList(From dataDir:String) {
-        if dataDir == "" {
-            fileList = []
-        }
-        else {
-            do {
-                let dataQueue = DispatchQueue(label: "public.load.fileList")
-                try dataQueue.sync {
-                    fileList = try fileManager.contentsOfDirectory(atPath: dataDir)
-                    fileTable.reloadData()
-                }
-                
-                fileList = fileList.filter {$0.contains(".xml")}.sorted()
-                
-                print(fileList)
-                
-                if fileList.isEmpty {
-                    cancelAlert(message: "Data folder is empty")
-                }
-            }
-            catch {
-                cancelAlert(message: "Error when try to load data")
-            }
-        }
-    }
-}
-
+// MARK: Alert template
 extension importViewController {
     func cancelAlert(message:String) {
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
