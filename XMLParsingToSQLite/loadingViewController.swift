@@ -67,11 +67,8 @@ extension loadingViewController {
         if !fh.existDirectory(Path: fh.pathToDir("official-data")) {
             try fh.createDirectory(Path: fh.pathToDir("official-data"))
         }
-            
-        for file in self.fileList {
-            try fh.copyItem(from: "data/" + file, to: "official-data/" + file)
-        }
 
+        try fh.copyXMLFileToOfficial()
     }
 }
 

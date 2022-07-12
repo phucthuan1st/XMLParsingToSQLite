@@ -74,14 +74,10 @@ extension importViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func showDataFileOnStorage() {
-        do {
-            let fh = FileHelper()
-            fileList = try fh.getFileList(On: fh.pathToDir("data"))
-            fileList.sort()
-        }
-        catch {
-            cancelAlert(message: error.localizedDescription)
-        }
+
+        let fh = FileHelper()
+        fileList = fh.fileList
+        fileList.sort()
         
         fileTable.allowsMultipleSelection = true
         fileTable.dataSource = self

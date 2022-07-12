@@ -1,6 +1,10 @@
 class FileHelper {
     static let shared: FileHelper = FileHelper()
     
+    var fileList:[String] {
+        return Bundle.main.paths(forResourcesOfType: "xml", inDirectory: "data")
+    }
+    
     let fileManager = FileManager.default
     
     func existDirectory(Path dir:String) -> Bool {
@@ -22,21 +26,34 @@ class FileHelper {
         return fileList
     }
     
-    func copyItem(from:String, to:String) throws {
+//    func copyItem(_ filePath:String) throws {
+//
+//        let toPath = pathToDir("official-data")
+//
+//        let fileName = filePath.split(separator: "/").last as! String
+//
+//        if !fileManager.fileExists(atPath: toPath) {
+//            try fileManager.copyItem(atPath: fromPath, toPath: toPath)
+//        }
+//        else {
+//            try fileManager.removeItem(atPath: toPath)
+//            try fileManager.copyItem(atPath: fromPath, toPath: toPath)
+//        }
+//    }
+    
+    func copyXMLFileToOfficial() throws {
+
+        let toPath = pathToDir("official-data")
         
-        let docDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        
-        let docPath = docDir[0]
-        
-        let fromPath = docPath.appendingPathComponent(from).path
-        let toPath = docPath.appendingPathComponent(to).path
-        
-        if !fileManager.fileExists(atPath: toPath) {
-            try fileManager.copyItem(atPath: fromPath, toPath: toPath)
-        }
-        else {
-            try fileManager.removeItem(atPath: toPath)
-            try fileManager.copyItem(atPath: fromPath, toPath: toPath)
+        for file in fileList {
+            let fileName = file.split(separator: "/").last!
+            if !fileManager.fileExists(atPath: toPath + "/" + fileName) {
+                try fileManager.copyItem(atPath: file, toPath: toPath + "/" + fileName)
+            }
+            else {
+                try fileManager.removeItem(atPath: toPath + "/" + fileName)
+                try fileManager.copyItem(atPath: file, toPath: toPath + "/" + fileName)
+            }
         }
     }
     

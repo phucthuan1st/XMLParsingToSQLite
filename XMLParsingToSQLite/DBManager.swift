@@ -9,6 +9,13 @@ class DBManager: NSObject {
     var pathToDatabase: String!
     var database: FMDatabase!
     
+    let createTableQuery = """
+        CREATE TABLE XML (
+            instanceID text not null primary key,
+            instanceName text
+        )
+        """
+    
     override init() {
         super.init()
      
@@ -25,7 +32,6 @@ class DBManager: NSObject {
             if database != nil {
                 // Open the database.
                 if database.open() {
-                    let createTableQuery = "create table XMLInstance (instanceID text not null primary key, instanceName text)"
      
                     do {
                         try database.executeUpdate(createTableQuery, values: nil)
@@ -35,13 +41,21 @@ class DBManager: NSObject {
                         print("Could not create table.")
                         print(error.localizedDescription)
                     }
-     
-                    // At the end close the database.
+
                     database.close()
                 }
                 else {
                     print("Could not open the database.")
                 }
+            }
+        }
+        else {
+            database = FMDatabase(path: pathToDatabase!)
+            do {
+                try database.executeUpdate(createTableQuery, values: nil)
+            }
+            catch {
+                print(error)
             }
         }
      
@@ -68,7 +82,7 @@ class DBManager: NSObject {
     }
     
     func insertRecord(record:Record) -> Bool {
-        let query = "INSERT INTO XMLInstance VALUES (\"\(record.instanceID!)\", \"\(record.instanceName!)\")"
+        let query = "INSERT INTO XML VALUES (\"\(record.instanceID!)\", \"\(record.instanceName!)\")"
         if !openDatabase() {
             print("cannot open database")
             database.close()
@@ -76,6 +90,7 @@ class DBManager: NSObject {
         }
         else {
             do {
+                try database.executeUpdate(createTableQuery, values: nil)
                 try database.executeUpdate(query, values: nil)
                 database.close()
                 return true
@@ -90,7 +105,7 @@ class DBManager: NSObject {
     
     func loadRecord() -> [Record] {
         if openDatabase() {
-            let query = "select * from XMLInstance"
+            let query = "select * from XML"
         
             do {
                 
