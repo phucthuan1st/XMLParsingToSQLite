@@ -156,21 +156,21 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" id="Y8u-4g-nuV" customClass="RecordCell" customModule="XMLParsingToSQLite" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="40"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" rowHeight="60" id="Y8u-4g-nuV" customClass="RecordCell" customModule="XMLParsingToSQLite" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y8u-4g-nuV" id="HjC-UG-CYn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G82-mW-WU2">
-                                                    <rect key="frame" x="20" y="0.0" width="344" height="16.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="364" height="17.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCp-5K-JdE">
-                                                    <rect key="frame" x="20" y="19.5" width="344" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCp-5K-JdE">
+                                                    <rect key="frame" x="20" y="20.5" width="364" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -178,13 +178,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="nCp-5K-JdE" secondAttribute="bottom" constant="4.5" id="Kn6-bp-o1F"/>
-                                                <constraint firstAttribute="trailing" secondItem="G82-mW-WU2" secondAttribute="trailing" constant="50" id="NIO-PB-CPa"/>
+                                                <constraint firstAttribute="trailing" secondItem="G82-mW-WU2" secondAttribute="trailing" constant="30" id="NIO-PB-CPa"/>
                                                 <constraint firstItem="nCp-5K-JdE" firstAttribute="top" secondItem="G82-mW-WU2" secondAttribute="bottom" constant="3" id="XGb-FT-hyO"/>
-                                                <constraint firstAttribute="trailing" secondItem="nCp-5K-JdE" secondAttribute="trailing" constant="50" id="YjZ-xJ-0ws"/>
+                                                <constraint firstAttribute="trailing" secondItem="nCp-5K-JdE" secondAttribute="trailing" constant="30" id="YjZ-xJ-0ws"/>
                                                 <constraint firstItem="G82-mW-WU2" firstAttribute="top" secondItem="HjC-UG-CYn" secondAttribute="top" id="f4x-oa-a01"/>
                                                 <constraint firstItem="nCp-5K-JdE" firstAttribute="leading" secondItem="HjC-UG-CYn" secondAttribute="leading" constant="20" symbolic="YES" id="gEq-ho-cVV"/>
                                                 <constraint firstItem="G82-mW-WU2" firstAttribute="leading" secondItem="HjC-UG-CYn" secondAttribute="leading" constant="20" symbolic="YES" id="m9U-Tz-uvi"/>
-                                                <constraint firstItem="G82-mW-WU2" firstAttribute="height" secondItem="nCp-5K-JdE" secondAttribute="height" id="tyP-a5-HzS"/>
+                                                <constraint firstItem="nCp-5K-JdE" firstAttribute="height" secondItem="G82-mW-WU2" secondAttribute="height" multiplier="2" id="tyP-a5-HzS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
