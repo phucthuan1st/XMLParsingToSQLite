@@ -10,7 +10,8 @@ import UIKit
 class loadingViewController: UIViewController {
     
     @IBOutlet weak var progressingBar: UIProgressView!
-    
+	@IBOutlet weak var progressingLabel: UILabel!
+	
     var elementName:String?
     var fileList = [String]()
     
@@ -26,24 +27,21 @@ class loadingViewController: UIViewController {
     
     func loadContent(completion: @escaping () -> ()) {
         progressingBar.setProgress(0.0, animated: true)
-        
+		progressingLabel.text = "0%"
         var progress:Float = 0.0
-        
-        let dispatchGroup = DispatchGroup()
         
         let workItem = DispatchWorkItem {
             do {
                 try self.moveFileToOfficial()
-                
                 for file in self.fileList {
-                    dispatchGroup.enter()
+                    
                     try self.handleForXMLInstace(path: file)
                     progress += 1.0 / Float(self.fileList.count)
                     
                     DispatchQueue.main.async {
                         self.progressingBar.setProgress(progress, animated: true)
+						self.progressingLabel.text = "\((progress * 100).rounded())%"
                     }
-                    dispatchGroup.leave()
                 }
             }
             catch {
@@ -52,15 +50,17 @@ class loadingViewController: UIViewController {
         }
         
         DispatchQueue.global().async(execute: workItem)
-        dispatchGroup.notify(queue: .main, execute: completion)
+        workItem.notify(queue: .main, execute: completion)
         
     }
     
     func changeToXMLVC() {
-        let xmlVC = self.storyboard?.instantiateViewController(withIdentifier: "xmlViewController") as! xmlViewController
-        
-        self.navigationController?.popViewController(animated: false)
-        self.navigationController?.pushViewController(xmlVC, animated: true)
+		
+		let xmlVC = self.storyboard?.instantiateViewController(withIdentifier: "xmlViewController") as! xmlViewController
+		let rootVC = self.navigationController?.viewControllers[0] as! importViewController
+		
+		self.navigationController?.setViewControllers([rootVC, xmlVC], animated: true)
+		//rootVC?.navigationController?.pushViewController(xmlVC, animated: true)
     }
     
     func Alert(message:String) {
@@ -77,7 +77,7 @@ extension loadingViewController : XMLParserDelegate {
             self.elementName = elementName
         }
         if elementName == "instanceName" {
-            if record == nil {
+			if record == nil || record?.instanceID == "" {
                 record = Record(instanceID: "Unknown ID", instanceName: "")
             }
             self.elementName = elementName

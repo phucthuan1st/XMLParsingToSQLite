@@ -29,11 +29,11 @@ class importViewController: UIViewController {
             cancelAlert(message: "Empty selection")
         }
         else {
-            let loadingView = self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! loadingViewController
+            let loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! loadingViewController
             
-            loadingView.fileList = selectedList
-            
-            self.navigationController?.pushViewController(loadingView, animated: true)
+            loadingVC.fileList = selectedList
+			
+            self.navigationController?.pushViewController(loadingVC, animated: true)
         }
     }
 }

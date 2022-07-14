@@ -116,17 +116,28 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-cy-9UH">
                                 <rect key="frame" x="75" y="451" width="264" height="4"/>
                             </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfN-lc-jVx">
+                                <rect key="frame" x="150" y="505" width="114" height="77"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="N9q-VW-OsD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="N9q-VW-OsD" firstAttribute="trailing" secondItem="aKV-cy-9UH" secondAttribute="trailing" constant="75" id="D28-r6-vlT"/>
                             <constraint firstItem="aKV-cy-9UH" firstAttribute="leading" secondItem="N9q-VW-OsD" secondAttribute="leading" constant="75" id="Kfv-Yq-jLM"/>
+                            <constraint firstItem="kfN-lc-jVx" firstAttribute="top" secondItem="aKV-cy-9UH" secondAttribute="bottom" constant="50" id="RAj-UV-Q0N"/>
+                            <constraint firstItem="N9q-VW-OsD" firstAttribute="trailing" secondItem="kfN-lc-jVx" secondAttribute="trailing" constant="150" id="cQn-Ly-Ljc"/>
+                            <constraint firstItem="N9q-VW-OsD" firstAttribute="bottom" secondItem="kfN-lc-jVx" secondAttribute="bottom" constant="280" id="dop-n8-G0k"/>
                             <constraint firstItem="aKV-cy-9UH" firstAttribute="top" secondItem="N9q-VW-OsD" secondAttribute="top" constant="407" id="rK8-tN-f6k"/>
+                            <constraint firstItem="kfN-lc-jVx" firstAttribute="leading" secondItem="N9q-VW-OsD" secondAttribute="leading" constant="150" id="wyz-RG-AZF"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="progressingBar" destination="aKV-cy-9UH" id="IO2-Ch-OBh"/>
+                        <outlet property="progressingLabel" destination="kfN-lc-jVx" id="hRS-HB-ZS1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fxI-HJ-6Nq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
