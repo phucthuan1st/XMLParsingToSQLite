@@ -1,6 +1,0 @@
-framework module Pods_XMLParsingToSQLite {
-  umbrella header "Pods-XMLParsingToSQLite-umbrella.h"
-
-  export *
-  module * { export * }
-}
