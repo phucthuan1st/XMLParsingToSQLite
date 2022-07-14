@@ -20,56 +20,53 @@ class loadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.loadContent(completion: changeToXMLVC)
+    }
+    
+    func loadContent(completion: @escaping () -> ()) {
         progressingBar.setProgress(0.0, animated: true)
         
-        DispatchQueue.global(qos: .userInitiated).async {
+        var progress:Float = 0.0
+        
+        let dispatchGroup = DispatchGroup()
+        
+        let workItem = DispatchWorkItem {
             do {
                 try self.moveFileToOfficial()
+                
                 for file in self.fileList {
+                    dispatchGroup.enter()
                     try self.handleForXMLInstace(path: file)
-                }
-                
-                let progress = 1.0 + Float(self.fileList.count)
-                DispatchQueue.main.async {
-                    self.progressingBar.setProgress(progress, animated: true)
+                    progress += 1.0 / Float(self.fileList.count)
                     
-                    if self.progressingBar.progress == 1.0 {
-                        let xmlViewController = self.storyboard?.instantiateViewController(withIdentifier: "xmlViewController") as! xmlViewController
-                        
-                        //xmlViewController.records = self.records
-                        
-                        self.navigationController?.popViewController(animated: false)
-                        self.navigationController?.pushViewController(xmlViewController, animated: true)
+                    DispatchQueue.main.async {
+                        self.progressingBar.setProgress(progress, animated: true)
                     }
+                    dispatchGroup.leave()
                 }
-                
             }
             catch {
                 self.Alert(message: error.localizedDescription)
             }
         }
+        
+        DispatchQueue.global().async(execute: workItem)
+        dispatchGroup.notify(queue: .main, execute: completion)
+        
+    }
+    
+    func changeToXMLVC() {
+        let xmlVC = self.storyboard?.instantiateViewController(withIdentifier: "xmlViewController") as! xmlViewController
+        
+        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.pushViewController(xmlVC, animated: true)
     }
     
     func Alert(message:String) {
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default))
         present(alert, animated: true)
-    }
-}
-
-extension loadingViewController {
-    
-    //MARK: move to FileHelper later
-    func moveFileToOfficial() throws {
-
-        let fh = FileHelper.shared
-        
-        if !fh.existDirectory(Path: fh.pathToDir("official-data")) {
-            try fh.createDirectory(Path: fh.pathToDir("official-data"))
-        }
-
-        try fh.copyXMLFileToOfficial()
     }
 }
 
@@ -113,11 +110,20 @@ extension loadingViewController : XMLParserDelegate {
 }
 
 extension loadingViewController {
+    //MARK: move to FileHelper later
+    func moveFileToOfficial() throws {
+        let fh = FileHelper.shared
+        
+        if !fh.existDirectory(Path: fh.pathToDir("official-data")) {
+            try fh.createDirectory(Path: fh.pathToDir("official-data"))
+        }
+
+        try fh.copyXMLFileToOfficial()
+    }
+    
     func handleForXMLInstace(path:String) throws {
         let fileName = path.split(separator: "/").last
         let filePath = FileHelper.shared.pathToDir("official-data") + "/" + fileName!
-        print(filePath)
-        
         
         let inputStream = InputStream(fileAtPath: filePath)
         let xmlParser = XMLParser(stream: inputStream!)

@@ -48,12 +48,13 @@ class FileHelper {
         for file in fileList {
             let fileName = file.split(separator: "/").last!
             if !fileManager.fileExists(atPath: toPath + "/" + fileName) {
+                print("move file")
                 try fileManager.copyItem(atPath: file, toPath: toPath + "/" + fileName)
             }
-            else {
-                try fileManager.removeItem(atPath: toPath + "/" + fileName)
-                try fileManager.copyItem(atPath: file, toPath: toPath + "/" + fileName)
-            }
+//            else {
+//                try fileManager.removeItem(atPath: toPath + "/" + fileName)
+//                try fileManager.copyItem(atPath: file, toPath: toPath + "/" + fileName)
+//            }
         }
     }
     

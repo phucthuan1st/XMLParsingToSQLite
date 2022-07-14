@@ -98,14 +98,14 @@ class DBManager: NSObject {
                 return true
             }
             catch {
-                print("cannot insert \(record): - \(error.localizedDescription)")
+                print(error.localizedDescription)
                 database.close()
                 return false
             }
         }
     }
     
-    func loadRecord() -> [Record] {
+    func loadRecord(completion: @escaping ([Record]) -> ()) {
         if openDatabase() {
             let query = "select * from XML"
         
@@ -121,17 +121,18 @@ class DBManager: NSObject {
                     
                     xmlRecord.append(record)
                 }
-                
+                completion(xmlRecord)
                 database.close()
-                return xmlRecord
             }
             catch {
                 print(error.localizedDescription)
                 database.close()
-                return [Record]()
+                completion([])
             }
         }
+        else {
+            completion([])
+        }
         
-        return [Record]()
     }
 }

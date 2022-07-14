@@ -34,7 +34,6 @@ class importViewController: UIViewController {
             loadingView.fileList = selectedList
             
             self.navigationController?.pushViewController(loadingView, animated: true)
-            
         }
     }
 }
