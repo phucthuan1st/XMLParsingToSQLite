@@ -57,10 +57,12 @@ class loadingViewController: UIViewController {
     func changeToXMLVC() {
 		
 		let xmlVC = self.storyboard?.instantiateViewController(withIdentifier: "xmlViewController") as! xmlViewController
+		//get first/root VC in VC stack
 		let rootVC = self.navigationController?.viewControllers[0] as! importViewController
 		
-		self.navigationController?.setViewControllers([rootVC, xmlVC], animated: true)
-		//rootVC?.navigationController?.pushViewController(xmlVC, animated: true)
+        //self.navigationController?.delegate = rootVC.navigationController?
+        rootVC.navigationController?.popViewController(animated: false)
+        rootVC.navigationController?.pushViewController(xmlVC, animated: true)
     }
     
     func Alert(message:String) {
