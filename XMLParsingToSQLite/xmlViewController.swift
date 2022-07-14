@@ -13,11 +13,9 @@ class xmlViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(records.count)
         prepareTable()
-        getRecord()
+        fetchRecord()
     }
-
 }
 
 extension xmlViewController : UITableViewDelegate, UITableViewDataSource {
@@ -42,9 +40,24 @@ extension xmlViewController : UITableViewDelegate, UITableViewDataSource {
         recordTable.delegate = self
         recordTable.dataSource = self
         recordTable.allowsSelection = false
+        
+        recordTable.refreshControl = UIRefreshControl()
+        recordTable.refreshControl?.addTarget(self, action: #selector(callRefreshTable), for: .valueChanged)
+        
     }
     
-    func getRecord() {
-        records = DBManager.shared.loadRecord()
+    @objc func callRefreshTable() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.fetchRecord()
+            self.recordTable.refreshControl?.endRefreshing()
+        })
+    }
+    
+    
+    func fetchRecord() {
+        DBManager.shared.fetchRecord(completion: { [weak self] records in
+            self?.records = records
+            self?.recordTable.reloadData()
+        })
     }
 }
