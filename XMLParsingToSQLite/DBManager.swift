@@ -107,7 +107,7 @@ class DBManager: NSObject {
         }
     }
     
-    func loadRecord(completion: @escaping ([Record]) -> ()) {
+    func fetchRecord(completion: @escaping ([Record]) -> ()) {
         if openDatabase() {
             let query = "select * from XML"
         
