@@ -1,3 +1,5 @@
+import FMDB
+
 struct Record {
     var instanceID:String?
     var instanceName:String?

@@ -10,19 +10,50 @@ import XCTest
 class XMLParsingToSQLiteTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testFileHelperPath() throws {
+        //make sure can create a path to a dir
+        XCTAssertNotNil(FileHelper.shared.pathToDir(""))
+    }
+    
+    func testFileHelperCheckExists() throws {
+        let docsDir = FileHelper.shared.pathToDir("")
+        XCTAssertTrue(FileHelper.shared.existDirectory(Path: docsDir))
+    }
+    
+    func testFileListOnBundle() throws {
+        //make sure bundle contain default xml files
+        XCTAssertNotNil(FileHelper.shared.fileList)
+    }
+    
+    func testFileHelperSingleton() throws {
+        XCTAssertNotNil(FileHelper.shared)
+    }
+    
+    func testDBManagerSingleton() throws {
+        XCTAssertNotNil(DBManager.shared)
+    }
+    
+    func testValidDatabasePath() throws {
+        let pathToDatabase = DBManager.shared.pathToDatabase!
+        
+        XCTAssertTrue(pathToDatabase.contains("official-data"))
+    }
+    
+    func testLoadRecordFromDB() throws {
+        var rc = [Record]()
+        
+        XCTAssertNotNil(DBManager.shared.loadRecord(completion: { data in
+            rc = data
+        }))
+        
+        print(rc)
     }
 
     func testPerformanceExample() throws {

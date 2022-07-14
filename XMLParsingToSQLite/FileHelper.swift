@@ -1,3 +1,5 @@
+import Foundation
+
 class FileHelper {
     static let shared: FileHelper = FileHelper()
     
@@ -25,7 +27,7 @@ class FileHelper {
         
         return fileList
     }
-    
+    //MARK: copy an item to destination location
 //    func copyItem(_ filePath:String) throws {
 //
 //        let toPath = pathToDir("official-data")
@@ -48,9 +50,9 @@ class FileHelper {
         for file in fileList {
             let fileName = file.split(separator: "/").last!
             if !fileManager.fileExists(atPath: toPath + "/" + fileName) {
-                print("move file")
                 try fileManager.copyItem(atPath: file, toPath: toPath + "/" + fileName)
             }
+            //MARK: uncomment these code if wanna replace same file with other version
 //            else {
 //                try fileManager.removeItem(atPath: toPath + "/" + fileName)
 //                try fileManager.copyItem(atPath: file, toPath: toPath + "/" + fileName)
