@@ -10,7 +10,7 @@ class DBManager: NSObject {
     var database: FMDatabase!
     
     let createTableQuery = """
-        CREATE TABLE XML (
+        CREATE TABLE IF NOT EXISTS XML (
             instanceID text not null primary key,
             instanceName text
         )
@@ -35,6 +35,7 @@ class DBManager: NSObject {
      
                     do {
                         try database.executeUpdate(createTableQuery, values: nil)
+                        print("Table created")
                         created = true
                     }
                     catch {
@@ -53,6 +54,7 @@ class DBManager: NSObject {
             database = FMDatabase(path: pathToDatabase!)
             do {
                 try database.executeUpdate(createTableQuery, values: nil)
+                print("Table created")
             }
             catch {
                 print(error)

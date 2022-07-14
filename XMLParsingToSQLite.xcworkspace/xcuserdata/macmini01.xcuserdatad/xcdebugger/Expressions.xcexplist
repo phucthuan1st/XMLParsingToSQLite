@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[FMDatabase executeUpdate:values:error:]:FMDatabase.m">
+      </ContextState>
+      <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "record">
+            </PersistentString>
+            <PersistentString
+               value = "database">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DBManager.loadRecord():DBManager.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

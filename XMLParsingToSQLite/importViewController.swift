@@ -53,7 +53,8 @@ extension importViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = fileTable.dequeueReusableCell(withIdentifier: "fileCell", for: indexPath) as! FileCell
         
-        cell.fileName.text = fileList[indexPath.section]
+        let fileName = fileList[indexPath.section].split(separator: "/").last
+        cell.fileName.text = String(fileName!)
         cell.check.isHidden = true
         
         return cell

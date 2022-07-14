@@ -4,7 +4,7 @@
 //
 //  Created by MacMini01 on 05/07/2022.
 //
-
+import Foundation
 import UIKit
 
 class loadingViewController: UIViewController {
@@ -15,6 +15,7 @@ class loadingViewController: UIViewController {
     var fileList = [String]()
     
     var record:Record?
+
     var records = [Record]()
     
     override func viewDidLoad() {
@@ -94,7 +95,6 @@ extension loadingViewController : XMLParserDelegate {
             if DBManager.shared.insertRecord(record: record!) {
                 print("Insert record successfully")
             }
-            record = nil
         }
     }
     
@@ -114,14 +114,18 @@ extension loadingViewController : XMLParserDelegate {
 
 extension loadingViewController {
     func handleForXMLInstace(path:String) throws {
-        let filePath = FileHelper.shared.pathToDir("official-data") + "/" + path
+        let fileName = path.split(separator: "/").last
+        let filePath = FileHelper.shared.pathToDir("official-data") + "/" + fileName!
+        print(filePath)
+        
+        
         let inputStream = InputStream(fileAtPath: filePath)
         let xmlParser = XMLParser(stream: inputStream!)
-        
+
         xmlParser.delegate = self
-        
+
         xmlParser.parse()
-        
+
         inputStream?.close()
     }
     
