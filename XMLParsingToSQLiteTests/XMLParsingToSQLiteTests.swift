@@ -17,6 +17,7 @@ class XMLParsingToSQLiteTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+	// MARK: FileHelper test
     func testFileHelperPath() throws {
         //make sure can create a path to a dir
         XCTAssertNotNil(FileHelper.shared.pathToDir(""))
@@ -36,6 +37,7 @@ class XMLParsingToSQLiteTests: XCTestCase {
         XCTAssertNotNil(FileHelper.shared)
     }
     
+	// MARK: DB Test
     func testDBManagerSingleton() throws {
         XCTAssertNotNil(DBManager.shared)
     }
@@ -46,21 +48,14 @@ class XMLParsingToSQLiteTests: XCTestCase {
         XCTAssertTrue(pathToDatabase.contains("official-data"))
     }
     
-    func testLoadRecordFromDB() throws {
+    func testFetchRecordFromDB() throws {
         var rc = [Record]()
         
-        XCTAssertNotNil(DBManager.shared.loadRecord(completion: { data in
+        XCTAssertNotNil(DBManager.shared.fetchRecord(completion: { data in
             rc = data
         }))
         
         print(rc)
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 
 }
