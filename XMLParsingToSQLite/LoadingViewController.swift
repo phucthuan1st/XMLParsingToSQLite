@@ -9,7 +9,7 @@ import UIKit
 
 class LoadingViewController: UIViewController {
     
-	var delegate:LoadingViewControllerDelegate?
+	weak var delegate:LoadingViewControllerDelegate?
 	
     @IBOutlet weak var progressingBar: UIProgressView!
 	@IBOutlet weak var progressingLabel: UILabel!
@@ -25,6 +25,7 @@ class LoadingViewController: UIViewController {
         super.viewDidLoad()
 
         self.loadContent(completion: { [weak self] in
+			//MARK: if delegate not weak, it will retain cycle
 			self?.delegate?.changeToXMLViewController()
 		})
     }
@@ -132,6 +133,7 @@ extension LoadingViewController {
     
 }
 
-protocol LoadingViewControllerDelegate {
+//MARK: make Delegate extense NSObject, so it can be a weak var
+protocol LoadingViewControllerDelegate : NSObject {
 	func changeToXMLViewController()
 }
