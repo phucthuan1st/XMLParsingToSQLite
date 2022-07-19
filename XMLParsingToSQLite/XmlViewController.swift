@@ -6,7 +6,7 @@ class RecordCell : UITableViewCell {
     @IBOutlet weak var instanceID: UILabel!
 }
 
-class xmlViewController: UIViewController {
+class XmlViewController: UIViewController {
 
     @IBOutlet weak var recordTable: UITableView!
     var records = [Record]()
@@ -18,7 +18,7 @@ class xmlViewController: UIViewController {
     }
 }
 
-extension xmlViewController : UITableViewDelegate, UITableViewDataSource {
+extension XmlViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return records.count
     }

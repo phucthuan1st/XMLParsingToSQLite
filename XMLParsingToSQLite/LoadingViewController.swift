@@ -7,8 +7,10 @@
 import Foundation
 import UIKit
 
-class loadingViewController: UIViewController {
+class LoadingViewController: UIViewController {
     
+	var delegate:LoadingViewControllerDelegate?
+	
     @IBOutlet weak var progressingBar: UIProgressView!
 	@IBOutlet weak var progressingLabel: UILabel!
 	
@@ -22,7 +24,9 @@ class loadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.loadContent(completion: changeToXMLVC)
+        self.loadContent(completion: { [weak self] in
+			self?.delegate?.changeToXMLViewController()
+		})
     }
     
     func loadContent(completion: @escaping () -> ()) {
@@ -54,17 +58,6 @@ class loadingViewController: UIViewController {
         
     }
     
-    func changeToXMLVC() {
-		
-		let xmlVC = self.storyboard?.instantiateViewController(withIdentifier: "xmlViewController") as! xmlViewController
-		//get first/root VC in VC stack
-		let rootVC = self.navigationController?.viewControllers[0] as! importViewController
-		
-        //self.navigationController?.delegate = rootVC.navigationController?
-        rootVC.navigationController?.popViewController(animated: false)
-        rootVC.navigationController?.pushViewController(xmlVC, animated: true)
-    }
-    
     func Alert(message:String) {
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default))
@@ -72,7 +65,7 @@ class loadingViewController: UIViewController {
     }
 }
 
-extension loadingViewController : XMLParserDelegate {
+extension LoadingViewController : XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "instanceID" {
             record = Record(instanceID: "", instanceName: "")
@@ -111,7 +104,7 @@ extension loadingViewController : XMLParserDelegate {
     }
 }
 
-extension loadingViewController {
+extension LoadingViewController {
     //MARK: move to FileHelper later
     func moveFileToOfficial() throws {
         let fh = FileHelper.shared
@@ -137,4 +130,8 @@ extension loadingViewController {
         inputStream?.close()
     }
     
+}
+
+protocol LoadingViewControllerDelegate {
+	func changeToXMLViewController()
 }

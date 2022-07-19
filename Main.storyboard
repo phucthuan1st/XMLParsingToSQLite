@@ -28,7 +28,7 @@
         <!--Choose file(s) to import-->
         <scene sceneID="RQO-lr-Dws">
             <objects>
-                <viewController storyboardIdentifier="importViewController" id="TSo-UZ-4kl" customClass="importViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImportViewController" id="TSo-UZ-4kl" customClass="ImportViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eIk-Av-kRX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,7 +108,7 @@
         <!--Loading View Controller-->
         <scene sceneID="eAr-q1-8CL">
             <objects>
-                <viewController storyboardIdentifier="loadingViewController" id="F29-0A-tO1" customClass="loadingViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewController" id="F29-0A-tO1" customClass="LoadingViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="23h-gO-kjv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,7 +147,7 @@
         <!--Xml View Controller-->
         <scene sceneID="uyc-Vh-bRM">
             <objects>
-                <viewController storyboardIdentifier="xmlViewController" id="rUG-mu-Czd" customClass="xmlViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XmlViewController" id="rUG-mu-Czd" customClass="XmlViewController" customModule="XMLParsingToSQLite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vmp-mq-osr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

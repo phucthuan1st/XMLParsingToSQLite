@@ -7,7 +7,7 @@
 
 import UIKit
 
-class importViewController: UIViewController {
+class ImportViewController: UIViewController {
     
     @IBOutlet weak var fileTable: UITableView!
     
@@ -29,9 +29,10 @@ class importViewController: UIViewController {
             cancelAlert(message: "Empty selection")
         }
         else {
-            let loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! loadingViewController
+            let loadingVC = self.storyboard?.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
             
             loadingVC.fileList = selectedList
+			loadingVC.delegate = self
 			
             self.navigationController?.pushViewController(loadingVC, animated: true)
         }
@@ -39,7 +40,7 @@ class importViewController: UIViewController {
 }
 
 //MARK: table view configuration
-extension importViewController : UITableViewDelegate, UITableViewDataSource {
+extension ImportViewController : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return fileList.count
@@ -86,12 +87,21 @@ extension importViewController : UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: Alert template
-extension importViewController {
+extension ImportViewController {
     func cancelAlert(message:String) {
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alert, animated: true)
     }
+}
+
+extension ImportViewController : LoadingViewControllerDelegate {
+	func changeToXMLViewController() {
+		let xmlVC = self.storyboard?.instantiateViewController(withIdentifier: "XmlViewController") as! XmlViewController
+		
+		self.navigationController?.popViewController(animated: false)
+		self.navigationController?.pushViewController(xmlVC, animated: true)
+	}
 }
 
 class FileCell : UITableViewCell {
