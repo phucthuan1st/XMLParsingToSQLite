@@ -133,7 +133,7 @@ extension LoadingViewController {
     
 }
 
-//MARK: make Delegate extense NSObject, so it can be a weak var
+//MARK: make Delegate extend NSObject, so it can be a weak var
 protocol LoadingViewControllerDelegate : NSObject {
 	func changeToXMLViewController()
 }
