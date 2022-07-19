@@ -85,9 +85,7 @@ extension LoadingViewController : XMLParserDelegate {
         }
         if elementName == "instanceName" {
             records.append(record!)
-            if DBManager.shared.insertRecord(record: record!) {
-                print("Insert record successfully")
-            }
+			DBManager.shared.insertRecord(record: record!, completion: {_ in })
         }
     }
     

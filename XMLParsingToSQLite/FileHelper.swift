@@ -27,6 +27,7 @@ class FileHelper {
         
         return fileList
     }
+	
     //MARK: copy an item to destination location
 //    func copyItem(_ filePath:String) throws {
 //
