@@ -42,3 +42,6 @@ Help to process with file and directory
 ## DBManager:
 Manage database of app, provide create db, insert record function
 
+## Minor Issue:
+- Not yet fix layout issue on mini iOS phone
+- Re-import file
