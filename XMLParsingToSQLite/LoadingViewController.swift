@@ -134,6 +134,6 @@ extension LoadingViewController {
 }
 
 //MARK: make Delegate extend NSObject, so it can be a weak var
-protocol LoadingViewControllerDelegate : NSObject {
+protocol LoadingViewControllerDelegate : AnyObject {
 	func changeToXMLViewController()
 }
